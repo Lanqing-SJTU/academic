@@ -1,0 +1,164 @@
+¡¾part 1¡¿
+
+1. Why we need continuous fingerprint users?
+
+Because users may share devices and accounts. And many issues arise from this, for example, children pay for games using parents' phone, employees steal private files on shared devices.
+If we only do authentization once when we open the device and then begins to use, it's not enough to prevent these issues. 
+
+2. Why traditional methods can not work? 
+
+Traditional works,  if we use them continously, some have privacy issue, like mic and camera;
+ome is hard to use, like fingerprint. 
+Other sensors suffer from permission issue like keytrokes;
+some accuracy is low, like using power data.
+Our method can work without high permission, privacy issue, but achieves high accuracy.
+ 
+3. Why EM signals suitable for fingerprinting users?
+
+When we interacts with mobile devices, we usually have our habits like  typing or mouse moving speed, interval.
+These habits are stable, and they can influence the characteristics of commands sent to the machine, and finally can reflect in EM signals.
+By analyzing these signals, we can fingerprint users.
+
+4. What's background APP noise? How is it cancellated?
+
+for example, when we type, we may at the same time keep the music or downloading app open.
+these are also EM signals, and can influence the analysis.
+however, at most times they change gradually over time, therefore we can model them and then predict.
+using real time collected signals minus the predicted ones, we can get clean signals.
+
+5. How is human movement noises cancellated?
+
+human interactions differ greatly in frequency response with other APP's signals, for example, they are under 1000Hz or smaller.
+then we apply the low-pass filter and filter out them. 
+we then use gaussion filter to filter random noise.
+as the changes caused by movements is large, we can also filter out the movements by cancellation.
+
+6. Why we must classify APPs category before user fingerprint? Will it lose info?
+
+so many apps, so many unknown apps, we cannot train each one.
+and we want to reduce burden from users' collection.
+and there are indeed similar apps, we add our prior knowledge in, and the experiment also shows that we reduced process time and achieved high accuracy when classifying untrained apps.
+
+(if there are 10 app category and 500 apps, for 10 user, if every app train a model, there will be in total 5000 models, which is ridiculous. using our method only 100 models in total; also when we use similar category strategy, the number of models used can be further reduced to tens of models.)
+
+7. Can you explain the standard of APP category?
+
+we referenced some work in paper. and also, we classifyed by our normal interactions' characteristics.
+in fact, we also made a cluster algorithm to verify our standard, and results show that different categories we divided keeps away from each cluster. 
+
+8. Why each category train a model? 
+
+similarly, we want to relax the burdon of training.
+for example, 10 users 100 apps, if all train together, we will train a extremely large model; 
+if we divide them and train app category model first, for each category train user classification model, we will reduce the training cost without losing much precision.
+
+9. What do you mean by same category and similar category?
+
+same category is from same category we divided.
+similar means the categories share similar , for example, typing frequency, mouse moving frequency, and clicking frequency.
+
+10. Why is tracking users' habits a challenge?
+
+what's habits? it's how long you interacts with your keyboard or mouse each time, and in a range of time, how many times you interacts with them.
+your habits is generally a combine of these features.
+many feature extraction methods only use local features, then they can only capture each of your interaction;
+some capture long range habits, but perhaps they lose local interactions.
+so we decide to combine them together, that's, using FCN for local feature, and use LSTm for long time feature. 
+
+11. Why you use FCN + LSTM?
+
+what's habits? it's how long you interacts with your keyboard or mouse each time, and in a range of time, how many times you interacts with them.
+your habits is generally a combine of these features.
+many feature extraction methods only use local features, then they can only capture each of your interaction;
+some capture long range habits, but perhaps they lose local interactions.
+so we decide to combine them together, that's, using FCN for local feature, and use LSTm for long time feature. 
+
+12. Why use time domain and frequency domain together? Will it increase the calculation cost?
+
+there are features of time domain, for example, the changing range of EM signal, and the speed of changing.
+there are features of frequency domain, for example, the common frequency, and frequency data is very stable.
+in order to fully exploit these data, we combine them together.
+and don't worry about the complexity, firstly, all operations are run on the server, we won't ask user to bear the cost;
+secondly, we do dropout and try larger kernel first, and FCN can also reduce time cost.
+
+13. How is FCN and LSTM combined? Why use the attention layer?
+
+we use FCN to capture local features, such as user's every interaction; use lstm to combine each time step's features and capture longer habits.
+since the lstm may also forget about previous records and experience, and the multi-to-one lstm infact waste some output of previous observations, so we use the attention layer to fully use these steps' data
+and focus on import timesteps' data instead of only the last time step. 
+
+14. Why is triplet loss needed? How it works?
+
+for example, though one user's habits is stable, however, it may also influenced by user's mood. For example, you are a person with fast typing speed. however, your girlfriend is sick and you can't go home to accompany her.
+you stay at lab spend every second as one year, type one word in two seconds. Em signals of you are different with your previous traces.
+so our system cannot recognize you.
+then we use the triplet loss. triplet loss force your samples to recognize your samples as you, though not so similar with special loss function and training procedure.
+though it cost much time, however, the benefit of accuracy is more important.
+and our system collect user's data and run on the server, so the cost is affordable.
+
+
+15. The model is so complex, is it practical?
+
+just like FCN,LSTM,triplet loss,
+though it cost much time, however, the benefit of accuracy is more important.
+our system collect user's data and run on the server, so the cost is affordable.
+
+16. It seems extra device is needed, why not use mobile phone's sensors?
+
+the sensors inside the mobile devices always suffer from low sample rate, so it may lose rich information of interactions. 
+android phones often has sample rate of 50-200Hz, and most of them under 100Hz.
+our DIY sensor has sample rate of 5000Hz, containing rich enough information to fingerprint users and use deep learning models. 
+
+17. Why your algorithm outperfoms state-of-art algorithms? 
+
+firstly, we designed unique preprocessing algorithms such as app category and filter noise by regression.
+compared with state-of-art classification algorithms,  we use both frequency and time domain data, use triplet loss to distinguish similar user traces, and these methods make it outperform other methods.
+
+18. Why across OS classification result is poor?
+
+different OS, though running the same app, they have different working principles.
+for example, some OS limit the background running of APPs.
+some limit the resource use of APPs.
+and they also varies in  usage of CPU,and so on.
+these differences makes the classification accuracy varies greatly.
+
+19. Can you explain your new scenarios like energy saving and privacy protection?
+
+for example, attach our DIY sensor to the device to monitor the usage of resources. Every time there are background or hack APPs want to use more resource, the device can record and remind the master.
+for privacy protection, it's also easy to understand, since that we can use Magprint to protect our machine from being used by person we don't want to, even if he or she has your account and share the same device with you.
+
+¡¾part 2¡¿
+
+1. False-nagative rate?
+
+Good questiuon. Due to tha paper range limitations, we only reported the leave-one-out accuracy. The false negative, the ROC figure can better reflects the classification result for a user authentification system.  It will be included in our future work.
+
+2. Attach locations?
+
+For laptops, we attach to the back of laptop near the CPU. We also made a heatmap of intensity of EM signals, which will be included in our future version of this paper.
+For phones, as it's small, attach on most area of the phone is ok to fingerprint the user.
+
+3. How to use? Users should be careful to use it?
+
+the user can wear the ring when operations on mobile devices. Also the device can be attached to the device and user don't  need to move it.
+
+4. If the problem is serious, why not use system permissions?
+
+in my understanding, firstly, whether the problem is serious or not should be discussed. The proposed scenarios, for example, in a home or company, in most cases, the problem is not so "serious", but there're indeed reports about the problem.
+in another part, it's easy to open a permission, while it's not so easy to monitor what the software does with the permission. That's, the permission is just like the box of panduora, and it has been reported that some softwares use mic, cam or other method to collect our data when we are don't recognize it. So why not we use sensors that contain little about our privacy when we have alternative?
+
+5. The effect of different components of this algorithm is not shown?
+
+Good question.  It's indeed that we only showed that how our algorithm outperformed other algoritnms, and due to the page limitations, we didnot compare the effect of whether use one component or not. Ihis part will be included in our future work. Thanks for this question.
+
+6. The collection time range of each user is too short?
+
+Yeah, because user is too many, and our sample rate is so large, so these data already result in a huge amount of data to analyse. And in addition, we asked one user to do several times of data collection to collect their habits as much as possible.
+Ideally, we should collect over months to collect one user' data. And in the future, we will carry on collecting data and improve the robustness of our system.
+
+7. Why not use sensor such as accelerators?
+
+As described in our paper, using accelerators to track users has its own drawbacks, and the most serious drawback is that, it can only capture user's movement, however, if user type on the laptop, and donot move, they can not work. Another reason is that, it lacks infomation of APP level. For example, when user is watching TV or playing games, they may have different movements. There are so many APPs, and if we mix them together  for classification, the result will be poor.
+So we conclude that using sensors like accelerator is limited as for user fingerprinting.
+Different from accelerator, EM signals contain much information about both user habits and APP level, so it's more suitable for fingerprinting users.
+Further more, EM sensor can also work with accelerator, one one hand, using both signals to classify users; on the other hand, user its signal for cancellation of user's movement to get clean data for interaction.
