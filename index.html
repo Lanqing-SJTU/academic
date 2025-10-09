@@ -25,6 +25,8 @@
       color: white;
       padding: 20px;
     }
+
+
     h1, h2 {
       color: #61dafb;
     }
@@ -59,6 +61,379 @@
         .profile-info {
             max-width: 600px; /* 文字部分的最大宽度 */
         }
+
+
+    .news-section {
+        margin: 40px 0;
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .news-year-section {
+        margin-bottom: 50px;
+        position: relative;
+    }
+
+    .news-year-title {
+        font-size: 2em;
+        color: #2c3e50;
+        margin-bottom: 30px;
+        padding: 15px 20px;
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        color: white;
+        border-radius: 10px;
+        display: inline-block;
+        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    }
+
+    .news-timeline {
+        position: relative;
+        padding-left: 40px;
+    }
+
+    .news-timeline::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, #3498db, #2980b9, #1a5276);
+        border-radius: 3px;
+    }
+
+    .news-item {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        margin-bottom: 25px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        position: relative;
+        border: 1px solid #eaeaea;
+    }
+
+    .news-item::before {
+        content: '';
+        position: absolute;
+        left: -40px;
+        top: 30px;
+        width: 20px;
+        height: 20px;
+        background: #3498db;
+        border-radius: 50%;
+        border: 4px solid white;
+        box-shadow: 0 0 0 3px #3498db;
+        z-index: 2;
+    }
+
+    .news-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .news-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
+
+    .news-date {
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #3498db;
+        background-color: #ebf5fb;
+        padding: 8px 15px;
+        border-radius: 20px;
+        box-shadow: 0 2px 5px rgba(52, 152, 219, 0.2);
+    }
+
+    .news-content {
+        font-size: 1.05em;
+        line-height: 1.6;
+        color: #2c3e50;
+    }
+
+    .paper-title {
+        font-style: italic;
+        font-weight: 600;
+        color: #2980b9;
+        background-color: #f0f7ff;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+
+    .conference-badge {
+        display: inline-block;
+        background: #e74c3c;
+        color: white;
+        font-size: 0.85em;
+        padding: 4px 12px;
+        border-radius: 15px;
+        margin-left: 8px;
+        font-weight: 500;
+    }
+
+    .ccf-a {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+    }
+
+    .ccf-conference {
+        display: inline-block;
+        background: linear-gradient(135deg, #6c757d, #495057); /* 中性灰色系 */
+        color: #ffffff;
+        font-size: 0.85em;
+        padding: 4px 12px;
+        border-radius: 15px;
+        margin-left: 8px;
+        font-weight: 500;
+        border: 1px solid #adb5bd;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .ccf-b {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+    }
+
+    .funding-badge {
+        background: linear-gradient(135deg, #27ae60, #229954);
+    }
+
+    .news-highlight {
+        background: linear-gradient(135deg, #fff9e6, #fff3d2);
+        border: 2px solid #f39c12;
+        box-shadow: 0 6px 20px rgba(243, 156, 18, 0.2);
+    }
+
+    .news-highlight .news-date {
+        background-color: #fef9e7;
+        color: #d35400;
+        box-shadow: 0 2px 5px rgba(243, 156, 18, 0.3);
+    }
+
+    .congratulations {
+        font-weight: 600;
+        color: #27ae60;
+        margin-top: 10px;
+        font-size: 0.95em;
+        padding-left: 20px;
+        position: relative;
+    }
+
+    .congratulations::before {
+        content: "🎉";
+        position: absolute;
+        left: 0;
+    }
+
+    .news-item-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #ecf0f1;
+        font-size: 0.9em;
+        color: #7f8c8d;
+    }
+
+    .news-stats {
+        display: flex;
+        gap: 15px;
+    }
+
+    .stat-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .stat-icon {
+        margin-right: 5px;
+        font-size: 1.1em;
+    }
+
+    /* 华为合作项目特殊样式 */
+    .news-item.huawei-collab {
+        border-left: 5px solid #ff0036;
+        background: linear-gradient(135deg, #ffffff, #f9f2f5);
+    }
+
+    .news-item.huawei-collab:hover {
+        box-shadow: 0 8px 20px rgba(255, 0, 54, 0.15);
+    }
+
+    .news-feature {
+        margin: 15px 0;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .feature-icon {
+        margin-right: 10px;
+        font-size: 1.2em;
+    }
+
+    .media-coverage {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #e0e0e0;
+    }
+
+    .media-link {
+        display: inline-flex;
+        align-items: center;
+        color: #0070ff;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 6px;
+        background-color: #f0f7ff;
+        transition: all 0.2s ease;
+    }
+
+    .media-link:hover {
+        background-color: #e0f0ff;
+        transform: translateY(-2px);
+    }
+
+    .media-icon {
+        margin-right: 8px;
+    }
+
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+        .news-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .news-date {
+            margin-bottom: 10px;
+        }
+        
+        .news-item-footer {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .news-stats {
+            width: 100%;
+            justify-content: space-between;
+        }
+        
+        .news-timeline {
+            padding-left: 30px;
+        }
+        
+        .news-item::before {
+            left: -30px;
+        }
+    }
+
+
+
+  .student-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 20px;
+  }
+
+  .student-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+
+  .student-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #61dafb 0%, #3498db 100%);
+  }
+
+  .student-header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid white;
+    object-fit: cover;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
+
+  .student-name {
+    margin-left: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  }
+
+  .student-info {
+    padding: 20px;
+  }
+
+  .student-degree {
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+  }
+
+  .student-research {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.05em;
+  }
+
+  .student-achievement {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+  }
+
+  .achievement-badge {
+    background-color: #3498db;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  .student-project {
+    display: flex;
+    align-items: center;
+    color: #34495e;
+  }
+
+  .project-icon {
+    font-size: 1.2em;
+    margin-right: 10px;
+    color: #3498db;
+  }
+
   </style>
   <title>杨岚青 - 个人主页</title>
 </head>
@@ -298,40 +673,142 @@ Email: yanglanqing@sjtu.edu.cn
               <li>2017-2023 Ph.D., Shanghai Jiao Tong University </li>
               <li>2013-2017 Undergrduate, University of Electronic Science and Technology of China </li>
 
-              <h2 id="news">News</h2>
-              <div class="news-container highlight">
-                <div class="news-item">
-                  <div class="news-date">2025-10-07</div>
-                  <div class="news-content">
-                    <em>LLM4IC4K</em> is accepted by IEEE BIBM (409/2083, CCF-B Conference), Congratulations to Yixin and Chenzhe !
-                  </div>
-                </div>
-                <div class="news-item highlight">
-                  <div class="news-date">2025-10-05</div>
-                  <div class="news-content">
-                    <em>NlcTCN</em> is accepted by IEEE BIBM (409/2083, CCF-B Conference), Congratulations to Zechen and Yiheng !
-                  </div>
-                </div>
-                <div class="news-item highlight">
-                  <div class="news-date">2025-09-22</div>
-                  <div class="news-content">
-                    <em>SingSpirit</em> is accepted by SenSys 2026 (49/258, CCF-B Conference), Congratulations to Zechen and Yiheng !
-                  </div>
-                </div>
-                <div class="news-item highlight" >
-                  <div class="news-date">2025-09-23</div>
-                  <div class="news-content">
-                    <em>MagPrint++</em> is accepted by IEEE TMC (CCF-A Transaction)! Congratulations to Zechen and Yiheng !
-                  </div>
-                </div>
-                <div class="news-item highlight">
-                  <div class="news-date">2025-08-28</div>
-                  <div class="news-content">
-                    I am supported by the NSFC Youth project (C class) !
-                  </div>
-                </div>
-              </div>
+            <!-- News部分HTML结构 -->
+            <h2 id="news">News</h2>
+            <div class="news-section">
+                
+                <!-- 2025年新闻 -->
+                <div class="news-year-section">
+                    <h3 class="news-year-title">2025</h3>
+                    <div class="news-timeline">
+                        
+                        <div class="news-item">
+                            <div class="news-header">
+                                <div class="news-date">2025-10-07</div>
+                            </div>
+                            <div class="news-content">
+                                Paper <span class="paper-title">LLM4IC4K</span> entered the Round 2 of  
+                                <strong>AAAI 2026</strong> 
+                                <span class="conference-badge ccf-a">CCF-A Conference</span>
+                                <div class="news-stats">
+                                    <span class="stat-item">📊 Acceptance: 32%</span>
+                                </div>
+                                <div class="congratulations">Congratulations to Yixin and Chenzhe!</div>
+                            </div>
+                        </div>
+                        
+                        <div class="news-item">
+                            <div class="news-header">
+                                <div class="news-date">2025-10-05</div>
+                            </div>
+                            <div class="news-content">
+                                Paper <span class="paper-title">NlcTCN</span> is accepted by 
+                                <strong>IEEE BIBM</strong> 
+                                <span class="conference-badge ccf-b">CCF-B Conference</span>
+                                <div class="news-stats">
+                                    <span class="stat-item">📊 Acceptance: 409/2083</span>
+                                </div>
+                                <div class="congratulations">Congratulations to Zechen and Yiheng!</div>
+                            </div>
+                        </div>
 
+
+                        <div class="news-item">
+                            <div class="news-header">
+                                <div class="news-date">2025-09-23</div>
+                            </div>
+                            <div class="news-content">
+                                Paper <span class="paper-title">MagPrint++</span> is accepted by 
+                                <strong>IEEE TMC</strong> 
+                                <span class="conference-badge ccf-a">CCF-A Transaction</span>
+                                <div class="congratulations">Congratulations to Zechen and Yiheng!</div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="news-item">
+                            <div class="news-header">
+                                <div class="news-date">2025-09-22</div>
+                            </div>
+                            <div class="news-content">
+                                Paper <span class="paper-title">SingSpirit</span> is accepted by 
+                                <strong>SenSys 2026</strong> 
+                                <span class="conference-badge ccf-b">CCF-B Conference</span>
+                                <div class="news-stats">
+                                    <span class="stat-item">📊 Acceptance: 49/258</span>
+                                </div>
+                                <div class="congratulations">Congratulations to Zechen and Yiheng!</div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="news-item news-highlight huawei-collab">
+                            <div class="news-header">
+                                <div class="news-date">2025-09-17</div>
+                            </div>
+                            <div class="news-content">
+                                <div class="project-title">
+                                    <span class="paper-title">Anti-Surveillance Detection System</span>
+                                    <span class="conference-badge ccf-conference">Industry First</span>
+                                </div>
+                                <p>Our collaboration with Huawei Data Communications resulted in the industry's first anti-eavesdropping AP, achieving 99% detection accuracy.</p>
+                                
+                                <div class="media-coverage">
+                                    <a href="https://www.163.com/dy/article/K9OPQCBA051190RS.html" target="_blank" class="media-link">
+                                        <span class="media-icon">📰</span>
+                                        <span>Tech Daily Push coverage</span>
+                                    </a>
+                                </div>
+                                
+                                <div class="congratulations">Congratulations to the team!</div>
+                            </div>
+                        </div>
+
+                        <div class="news-item news-highlight">
+                            <div class="news-header">
+                                <div class="news-date">2025-08-28</div>
+                            </div>
+                            <div class="news-content">
+                                <strong>NSFC Youth Project (C class)</strong> funding secured!
+                                <span class="conference-badge funding-badge">Research Grant</span>
+                                <div class="news-item-footer">
+                                    <span>National Natural Science Foundation of China</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 可以添加更多年份的部分 -->
+                
+                <div class="news-year-section">
+                    <h3 class="news-year-title">2024</h3>
+                    <div class="news-timeline">
+                        <div class="news-item">
+                            <div class="news-header">
+                                <div class="news-date">2024-12-15</div>
+                            </div>
+                            <div class="news-content">
+                                Paper <span class="paper-title">MagSpy</span> is accepted by 
+                                <strong>IEEE TMC</strong> 
+                                <span class="conference-badge ccf-a">CCF-A Conference</span>
+                                <div class="congratulations">Congratulations to Yongjian !</div>
+                            </div>
+                        </div>
+                        <div class="news-item news-highlight">
+                            <div class="news-header">
+                                <div class="news-date">2024-11-07</div>
+                            </div>
+                            <div class="news-content">
+                                <strong>Project Funded </strong> by Shanghai Natural Science Foundation funding 
+                                <span class="conference-badge funding-badge">Research Grant</span>
+                                <div class="news-item-footer">
+                                    <span>Shanghai Natural Science Foundation funding </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
 
 
               <h2 id="publication">Publication<a class="headerlink" href="#publication" title="Permanent link">&para;</a>
@@ -464,32 +941,86 @@ Email: yanglanqing@sjtu.edu.cn
             <ul>
               <li>参与起草国家标准《 物联网 470MHz/2.4GHz频段传感网通信与信息交换 第1部分：物理层要求及链路层协议》 </li>
             </ul>
+
             <h2 id="students">Students<a class="headerlink" href="#students" title="Permanent link">&para;</a></h2>
             <div class="student-grid">
+              <!-- 学生1: 刘怡昕 -->
               <div class="student-card">
-                <img src="img/liuyixin.png" alt="刘怡昕">
-                <h3>刘怡昕</h3>
-                <p>研一学生，本科毕业于上海交通大学环境科学与工程专业。 研究方向为大模型、人工智能。 具体方向包括从大模型微调与多智能体优化，已发表CCF A类论文1篇。</p>
+                <div class="student-header">
+                  <img src="img/liuyixin.png" alt="刘怡昕">
+                  <div class="student-name">刘怡昕</div>
+                </div>
+                <div class="student-info">
+                  <div class="student-degree">研一学生</div>
+                  <div class="student-research">研究方向：大模型、人工智能</div>
+                  <div class="student-detail">
+                    <p>本科毕业于上海交通大学环境科学与工程专业。具体方向包括大模型微调与多智能体优化，已发表CCF A类论文1篇。</p>
+                  </div>
+                  <div class="student-achievement">
+                    <span class="achievement-badge">CCF A</span>
+                    发表顶级会议论文1篇
+                  </div>
+                </div>
               </div>
+
+              <!-- 学生2: 甘林千 -->
               <div class="student-card">
-                <img src="img/ganlinqian.jpg" alt="甘林千">
-                <h3>甘林千</h3>
-                <p>研一学生，本科毕业于波士顿大学计算机科学与统计艺术学院。 研究方向为电磁感知、大模型安全；具体方向包括大模型安全防护、电磁感知增强等。 已投稿CCF A类论文1篇。</p>
+                <div class="student-header">
+                  <img src="img/ganlinqian.jpg" alt="甘林千">
+                  <div class="student-name">甘林千</div>
+                </div>
+                <div class="student-info">
+                  <div class="student-degree">研一学生</div>
+                  <div class="student-research">研究方向：电磁感知、大模型安全</div>
+                  <div class="student-detail">
+                    <p>本科毕业于波士顿大学计算机科学与统计艺术学院。具体方向包括大模型安全防护、电磁感知增强等。已投稿CCF A类论文1篇。</p>
+                  </div>
+                  <div class="student-achievement">
+                    <span class="achievement-badge">投稿中</span>
+                    CCF A类论文1篇
+                  </div>
+                </div>
               </div>
+
+              <!-- 学生3: 董润扬 -->
               <div class="student-card">
-                <img src="img/dongrunyang.jpg" alt="董润扬">
-                <h3>董润扬</h3>
-                <p> 研一学生，本科毕业于哈尔滨工程大学人工智能专业。研究方向为无线大模型、无线感知增强等。 </p>
+                <div class="student-header">
+                  <img src="img/dongrunyang.jpg" alt="董润扬">
+                  <div class="student-name">董润扬</div>
+                </div>
+                <div class="student-info">
+                  <div class="student-degree">研一学生</div>
+                  <div class="student-research">研究方向：无线大模型、无线感知增强</div>
+                  <div class="student-detail">
+                    <p>本科毕业于哈尔滨工程大学人工智能专业。专注于无线通信与大模型结合的前沿研究。</p>
+                  </div>
+                  <div class="student-achievement">
+                    <span class="achievement-badge">潜力新星</span>
+                    积极参与实验室项目
+                  </div>
+                </div>
               </div>
+
+              <!-- 学生4: 陈燕 -->
               <div class="student-card">
-                <img src="img/chenyan.png" alt="陈燕">
-                <h3>陈燕</h3>
-                <p>大四学生，已推免至上海交大计算机学院。 本科就读于同济大学电子信息工程专业，目前研究方向为大模型动态路由、声音感知等相关研究，专注于传感器数据融合技术。</p>
+                <div class="student-header">
+                  <img src="img/chenyan.png" alt="陈燕">
+                  <div class="student-name">陈燕</div>
+                </div>
+                <div class="student-info">
+                  <div class="student-degree">大四学生（已推免）</div>
+                  <div class="student-research">研究方向：大模型动态路由、声音感知</div>
+                  <div class="student-detail">
+                    <p>本科就读于同济大学电子信息工程专业，已推免至上海交大计算机学院。专注于传感器数据融合技术。</p>
+                  </div>
+                  <div class="student-achievement">
+                    <span class="achievement-badge">推免生</span>
+                    同济大学优秀毕业生
+                  </div>
+                </div>
               </div>
             </div>
-          </article>
-        </div>
-      </div>
+
     </main>
     <footer class="md-footer">
       <div class="md-footer-meta md-typeset">
