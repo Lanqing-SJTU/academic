@@ -60,11 +60,164 @@
             box-shadow: 4px 0 10px rgba(0,0,0,0.1);
         }
 
+
+        /* ───── NEW DEMO SYSTEM STYLES ───── */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .demo-item {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: #000;
+            aspect-ratio: 16/10;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .demo-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .demo-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            opacity: 0.9;
+        }
+
+        .demo-item:hover .demo-thumb {
+            opacity: 0.4;
+            transform: scale(1.05);
+        }
+
+        .demo-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            transition: var(--transition);
+            color: white;
+        }
+
+        .demo-item:hover .demo-overlay {
+            opacity: 1;
+        }
+
+        .demo-overlay h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .demo-overlay p {
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            transition-delay: 0.1s;
+        }
+
+        .demo-item:hover .demo-overlay h3,
+        .demo-item:hover .demo-overlay p {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .btn-watch {
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-watch:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* ───── VIDEO MODAL ───── */
+        .video-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            background: #000;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 2100;
+            background: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover { background: var(--primary); }
+
+        .modal-video {
+            width: 100%;
+            display: block;
+        }
+
+
         .sidebar-profile {
             padding: 3rem 2rem 2rem;
             text-align: center;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+
+        .badge-award { background: #fef3c7; color: #b45309; }
 
         .profile-pic {
             width: 130px;
@@ -153,6 +306,18 @@
             margin: 0 auto;
             padding: 4rem 2rem;
         }
+
+        /* New distinct style for Grants */
+        .badge-grant { 
+            background: #dcfce7; /* Soft Emerald Green */
+            color: #166534;      /* Deep Forest Green */
+            border: 1px solid #bbf7d0;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
 
         .section { display: none; animation: fadeIn 0.4s ease; }
         .section.active { display: block; }
@@ -418,7 +583,7 @@
                         <span class="stat-label">Publications</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-num">5+</span>
+                        <span class="stat-num">10+</span>
                         <span class="stat-label">CCF-A Papers</span>
                     </div>
                     <div class="stat-card">
@@ -426,7 +591,7 @@
                         <span class="stat-label">NSFC Youth Project</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-num">99%</span>
+                        <span class="stat-num">Accu 99%</span>
                         <span class="stat-label">Huawei Deployment</span>
                     </div>
                 </div>
@@ -441,24 +606,40 @@
                     <br>
                     <p>My research focuses on the intersection of the <span class="highlight">Internet of Things (IoT)</span>, <span class="highlight">Intelligent Sensing</span>, and <span class="highlight">Large Language Models (LLMs)</span>. I aim to bridge the gap between physical sensing and intelligent cognitive understanding.</p>
                     <br>
-                    <p>I have published over 30 papers in prestigious venues including <strong>USENIX Security, NSDI, MobiCom, and IEEE TMC</strong>. I was honored with the <strong>2025 Shanghai Computer Society Science and Technology Award (First Prize)</strong>.</p>
+                    <p>I have published over 30 papers in prestigious venues including <strong>USENIX Security, NSDI, MobiCom, and IEEE INFOCOM</strong>. I was honored with the <strong>2025 Shanghai Computer Society Science and Technology Award (First Prize)</strong>.</p>
                 </div>
 
                 <div class="card">
                     <div class="card-title"><i class="fas fa-bullhorn"></i> Recent News</div>
                     <ul class="dense-list">
                         <li>
+                            <span style="font-family: 'JetBrains Mono'; font-size:0.8rem; color:var(--text-muted); min-width:80px">2026/04</span>
+                            <span>Honored to receive the <strong>First Prize of the 2025 Shanghai Computer Society Science and Technology Award</strong>. <span class="badge badge-award">Award</span></span>
+                        </li>
+                        <li>
+                            <span style="font-family: 'JetBrains Mono'; font-size:0.8rem; color:var(--text-muted); min-width:80px">2026/04</span>
+                            <span>A paper submitted to UBICOMP venue received a 'Major Revision' decision. Congratulations to Weiyi! <span class="badge badge-a">CCF-A</span></span>
+                        </li>                        
+                        <li>
                             <span style="font-family: 'JetBrains Mono'; font-size:0.8rem; color:var(--text-muted); min-width:80px">2026/01</span>
                             <span>Journal accepted: "Empowering Aerospace and Marine Remote Sensing: Crowdsourced Salinity Sensing Based on Acoustic CSI and AI" (to appear 2026) <span class="badge badge-j">Journal</span></span>
                         </li>
+
+                        <!-- Add this to your news list -->
+                        <li>
+                            <span style="font-family: 'JetBrains Mono'; font-size:0.8rem; color:var(--text-muted); min-width:80px">2026/01</span>
+                            <span>Successfully completed the <strong>Huawei Collaboration Project</strong> on AP electromagnetic sensing security. <span class="badge badge-industry">Industry</span></span>
+                        </li>
+
+
                         <li>
                             <span style="font-family: 'JetBrains Mono'; font-size:0.8rem; color:var(--text-muted); min-width:80px">2026/01</span>
                             <span><strong>MagPrint++</strong> published in IEEE Transactions on Mobile Computing. <span class="badge badge-a">CCF-A</span></span>
                         </li>
-                        <li>
+<!--                         <li>
                             <span style="font-family: 'JetBrains Mono'; font-size:0.8rem; color:var(--text-muted); min-width:80px">2025/10</span>
                             <span>Paper <em>LLM4IC4K</em> entered Round 2 of <strong>AAAI 2026</strong>. Congratulations to Yixin and Chenzhe! <span class="badge badge-a">CCF-A</span></span>
-                        </li>
+                        </li> -->
                         <li>
                             <span style="font-family: 'JetBrains Mono'; font-size:0.8rem; color:var(--text-muted); min-width:80px">2025/10</span>
                             <span>Paper <em>NlcTCN</em> accepted by <strong>IEEE BIBM</strong>. Congratulations to Zechen and Yiheng! <span class="badge badge-b">CCF-B</span></span>
@@ -475,10 +656,14 @@
                             <span style="font-family: 'JetBrains Mono'; font-size:0.8rem; color:var(--text-muted); min-width:80px">2025/09</span>
                             <span>Deployed the industry's first <strong>Anti-Surveillance Detection System</strong> with Huawei Data Communications (99% accuracy). <span class="badge badge-industry">Industry</span></span>
                         </li>
+
+                        <!-- Updated Grant item with the new logo/style -->
                         <li>
                             <span style="font-family: 'JetBrains Mono'; font-size:0.8rem; color:var(--text-muted); min-width:80px">2025/08</span>
-                            <span>Secured <strong>NSFC Youth Project (C class)</strong> funding! <span class="badge badge-grant">Grant</span></span>
+                            <span>Secured <strong>NSFC Youth Project (C class)</strong> funding! <span class="badge badge-grant"><i class="fas fa-landmark"></i> Grant</span></span>
                         </li>
+
+
                         <li>
                             <span style="font-family: 'JetBrains Mono'; font-size:0.8rem; color:var(--text-muted); min-width:80px">2024/12</span>
                             <span>Paper <em>MagSpy</em> accepted by <strong>IEEE TMC</strong>. Congratulations to Yongjian! <span class="badge badge-a">CCF-A</span></span>
@@ -568,11 +753,13 @@
                             <div class="pub-venue">arXiv:2508.03725, 2025 <span class="badge badge-arxiv">arXiv</span></div>
                         </div>
 
-                        <div class="pub-item" data-type="j">
+
+<!--                         <div class="pub-item" data-type="j">
                             <div class="pub-title">Unleashing ChatGPT's Power: A Case Study on Optimizing Information Retrieval in Flipped Classrooms via Prompt Engineering</div>
                             <div class="pub-authors">Mo Wang, Minjuan Wang, Xin Xu, <b>Lanqing Yang</b>, Dunbo Cai, Minghao Yin.</div>
                             <div class="pub-venue">IEEE Transactions on Learning Technologies, 17: 629-641, 2024 <span class="badge badge-j">Journal</span></div>
                         </div>
+ -->
 
                         <div class="pub-item" data-type="arxiv">
                             <div class="pub-title">VCEMO: Multi-Modal Emotion Recognition for Chinese Voiceprints</div>
@@ -634,7 +821,7 @@
                             <div class="pub-venue">IEEE/ACM Transactions on Networking (ToN), 2022 <span class="badge badge-a">CCF-A</span></div>
                         </div>
 
-                        <div class="pub-item" data-type="b">
+                        <div class="pub-item" data-type="a">
                             <div class="pub-title">LeakPrint: Behavior-irrelevant User Identification Leveraging Leakage Current on Laptops</div>
                             <div class="pub-authors">Dian Ding, <b>Lanqing Yang</b>, Yi-Chao Chen, Guangtao Xue.</div>
                             <div class="pub-venue">ACM UbiComp/ISWC (IMWUT), 2022</div>
@@ -676,16 +863,23 @@
                             <div class="pub-venue">IEEE INFOCOM 2020 <span class="badge badge-a">CCF-A</span></div>
                         </div>
 
-                        <div class="pub-item" data-type="b">
+                        <div class="pub-item" data-type="a">
                             <div class="pub-title">Poster: Toward a Secure QR Code System by Fingerprinting Screens</div>
                             <div class="pub-authors">Yijie Li, Yi-Chao Chen, Xiaoyu Ji, Hao Pan, <b>Lanqing Yang</b>, Guangtao Xue, Jiadi Yu.</div>
                             <div class="pub-venue">ACM MobiCom 2020 (Poster)</div>
                         </div>
 
-                        <div class="pub-item" data-type="b">
-                            <div class="pub-title">Poster: Appliance Fingerprinting Using Sound from Power Supply</div>
+                        <div class="pub-item" data-type="a">
+                            <div class="pub-title">Toward a Secure QR Code System by Fingerprinting Screens</div>
+                            <div class="pub-authors">Li Yijie, Chen Yi-Chao, Ji Xiaoyu, Pan Hao, <b>Lanqing Yang</b>, Xue Guangtao, Yu Jiadi.</div>
+                            <div class="pub-venue">ACM MobiCom 2020 <span class="badge badge-a">CCF-A</span></div>
+                        </div>
+
+
+                        <div class="pub-item" data-type="a">
+                            <div class="pub-title"> Appliance Fingerprinting Using Sound from Power Supply</div>
                             <div class="pub-authors"><b>Lanqing Yang#</b>, Honglu Li#, Zhaoxi Chen#, Yi-Chao Chen, Xiaoyu Ji, Guangtao Xue, Chuang-Wen You.</div>
-                            <div class="pub-venue">ACM UbiComp/ISWC 2020 (Poster)</div>
+                            <div class="pub-venue">ACM UbiComp/ISWC 2020 <span class="badge badge-a">CCF-A</span> </div>
                         </div>
 
                         <!-- 2019 -->
@@ -697,10 +891,10 @@
                             <div class="pub-venue">ACM MobiCom 2019 <span class="badge badge-a">CCF-A</span></div>
                         </div>
 
-                        <div class="pub-item" data-type="b">
-                            <div class="pub-title">Poster: Secure Visible Light Communication based on Nonlinearity of Spatial Frequency in Light</div>
+                        <div class="pub-item" data-type="a">
+                            <div class="pub-title"> Secure Visible Light Communication based on Nonlinearity of Spatial Frequency in Light</div>
                             <div class="pub-authors">Hao Pan, <b>Lanqing Yang</b>, Yi-Chao Chen, Guangtao Xue, Chuang-Wen You, Xiaoyu Ji, Pai-Yen Chen.</div>
-                            <div class="pub-venue">ACM MobiCom 2019 (Demo/Poster)</div>
+                            <div class="pub-venue">ACM MobiCom 2019 <span class="badge badge-a">CCF-A</span> </div>
                         </div>
 
                         <div class="pub-item" data-type="j">
@@ -774,7 +968,9 @@
                 <div class="card">
                     <div class="card-title"><i class="fas fa-certificate"></i> Patents <span style="font-size: 0.9rem; color: var(--text-muted); margin-left: 10px;">(Chinese Patents)</span></div>
                     <ul class="dense-list">
-                        <li><i class="fas fa-file-contract list-icon"></i><span><strong>A method for material identification of objects based on tapping sound simulation and deep learning</strong> — CN202510160438.4. [Under substantive examination]</span></li>
+                        <li><i class="fas fa-file-contract list-icon"></i><span><strong>A visual continual learning inference method and system based on multi-model fusion</strong> — CN202610013675.2. [Under substantive examination]</span></li>
+                        <li><i class="fas fa-file-contract list-icon"></i><span><strong>A method, device, equipment, and medium for appliance category and state detection</strong> — CN202511045929.0. [Under substantive examination]</span></li>                       
+                        <li><i class="fas fa-file-contract list-icon"></i><span><strong>A method for material identification of objects based on tapping sound simulation and deep learning</strong> — CN202510160438.4. <span class="badge badge-j">Authorized</span> </span></li>
                         <li><i class="fas fa-file-contract list-icon"></i><span><strong>A multi-region data migration method and storage system based on correlation perception</strong> — CN202411319922.9. [Accepted]</span></li>
                         <li><i class="fas fa-file-contract list-icon"></i><span><strong>An enterprise-level carbon emission prediction method and its system</strong> — CN202410576384.5. [Under substantive examination]</span></li>
                         <li><i class="fas fa-file-contract list-icon"></i><span><strong>A security optimization method for air gap systems</strong> — CN202310008703.8. <span class="badge badge-j">Authorized</span></span></li>
@@ -784,51 +980,109 @@
                 </div>
             </section>
 
+
             <!-- SECTION: DEMOS -->
             <section id="sec-demos" class="section">
                 <div class="card">
                     <div class="card-title"><i class="fas fa-desktop"></i> Research Demos & Systems</div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 25px;">
-                        
-                        <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-body);">
-                            <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 1rem;">
-                                <i class="fas fa-microphone" style="font-size: 1.5rem; color: var(--primary);"></i>
-                                <h3 style="font-size: 1.2rem;">SingAttack</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
+                        Click on any project to explore the system architecture and watch the live demonstration.
+                    </p>
+                    
+                    <div class="demo-grid">
+                        <!-- Project 0: Huawei Lingmou -->
+                        <div class="demo-item" onclick="openDemo('demoSelected/huawei.png', 'demoSelected/0-huawei-lingmou.mp4', 'Huawei Lingmou System', 'Industrial-grade AP-based sensing for secure environment monitoring and intelligent device perception.')">
+                            <img src="demoSelected/huawei.png" class="demo-thumb" alt="Huawei Lingmou">
+                            <div class="demo-overlay">
+                                <h3>Huawei Lingmou System</h3>
+                                <p>Industrial-grade AP-based sensing for secure environment monitoring.</p>
+                                <button class="btn-watch"><i class="fas fa-play"></i> Watch Demo</button>
                             </div>
-                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">A covert attack exploiting high-frequency sounds emitted by power supplies to inject malicious commands into speech recognition systems. Demonstrated on commercial smart speakers and smartphones.</p>
-                            <div><span class="badge badge-a">USENIX Security 2023</span> <span class="badge badge-b">Side-Channel</span></div>
                         </div>
 
-                        <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-body);">
-                            <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 1rem;">
-                                <i class="fas fa-bolt" style="font-size: 1.5rem; color: var(--primary);"></i>
-                                <h3 style="font-size: 1.2rem;">SingSPirit</h3>
+                        <!-- Project 1: SingSpirit -->
+                        <div class="demo-item" onclick="openDemo('demoSelected/1-singspirit.png', 'demoSelected/1-singspirit.mp4', 'SingSpirit', 'Non-invasive home appliance interaction and state detection via unique acoustic signatures.')">
+                            <img src="demoSelected/1-singspirit.png" class="demo-thumb" alt="SingSpirit">
+                            <div class="demo-overlay">
+                                <h3>SingSpirit</h3>
+                                <p>Acoustic signatures for home appliance interaction.</p>
+                                <button class="btn-watch"><i class="fas fa-play"></i> Watch Demo</button>
                             </div>
-                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Captures faint high-frequency acoustic signatures from electronic components to monitor e-bike battery health and interpret device states without invasive sensors.</p>
-                            <div><span class="badge badge-b">SenSys 2026</span></div>
                         </div>
 
-                        <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-body);">
-                            <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 1rem;">
-                                <i class="fas fa-magnet" style="font-size: 1.5rem; color: var(--primary);"></i>
-                                <h3 style="font-size: 1.2rem;">MagPrint / MagPrint++</h3>
+                        <!-- Project 2: ICLLM -->
+                        <div class="demo-item" onclick="openDemo('demoSelected/2-ICLLM.png', 'demoSelected/2-ICLLM.mp4', 'ICLLM', 'Integrating LLMs with IC datasheets for automated footprint geometry understanding.')">
+                            <img src="demoSelected/2-ICLLM.png" class="demo-thumb" alt="ICLLM">
+                            <div class="demo-overlay">
+                                <h3>ICLLM</h3>
+                                <p>LLM-powered understanding of IC footprint geometry.</p>
+                                <button class="btn-watch"><i class="fas fa-play"></i> Watch Demo</button>
                             </div>
-                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">A continuous fingerprinting framework exploiting unintended electromagnetic emanations captured by built-in magnetometers on commodity mobile devices.</p>
-                            <div><span class="badge badge-a">IEEE TMC</span> <span class="badge badge-a">INFOCOM 2020</span></div>
                         </div>
 
-                        <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-body);">
-                            <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 1rem;">
-                                <i class="fas fa-broadcast-tower" style="font-size: 1.5rem; color: var(--primary);"></i>
-                                <h3 style="font-size: 1.2rem;">Anti-Surveillance System</h3>
+                        <!-- Project 3: SJTU Equipment Mgmt -->
+                        <div class="demo-item" onclick="openDemo('demoSelected/3-Project-deviceManage.png', 'demoSelected/3-project-deviceManage.mp4', 'SJTU Smart Equipment Manager', 'A custom sensor network for automated management of 1,000+ large-scale scientific instruments at SJTU.')">
+                            <img src="demoSelected/3-Project-deviceManage.png" class="demo-thumb" alt="SJTU Mgmt">
+                            <div class="demo-overlay">
+                                <h3>SJTU Equipment Manager</h3>
+                                <p>Custom sensor network for 1,000+ lab instruments.</p>
+                                <button class="btn-watch"><i class="fas fa-play"></i> Watch Demo</button>
                             </div>
-                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Industry-deployed system developed with Huawei Data Communications to detect covert surveillance devices with 99% accuracy.</p>
-                            <div><span class="badge badge-industry">Industry Production</span></div>
                         </div>
 
+                        <!-- Project 4: Mag-Patch -->
+                        <div class="demo-item" onclick="openDemo('demoSelected/4-magAttach.png', 'demoSelected/4-Mag-deviceInteract.mp4', 'Magnetic Patch Sensing', 'High-precision appliance state monitoring using electromagnetic sensing patches.')">
+                            <img src="demoSelected/4-magAttach.png" class="demo-thumb" alt="Mag-Patch">
+                            <div class="demo-overlay">
+                                <h3>Magnetic Patch Sensing</h3>
+                                <p>Monitoring appliance states using magnetic patches.</p>
+                                <button class="btn-watch"><i class="fas fa-play"></i> Watch Demo</button>
+                            </div>
+                        </div>
+
+                        <!-- Project 5: MagPrint -->
+                        <div class="demo-item" onclick="openDemo('demoSelected/5-MagPrint.png', 'demoSelected/5-MagPrint.mp4', 'MagPrint', 'Continuous user fingerprinting exploiting unintended electromagnetic emanations.')">
+                            <img src="demoSelected/5-MagPrint.png" class="demo-thumb" alt="MagPrint">
+                            <div class="demo-overlay">
+                                <h3>MagPrint</h3>
+                                <p>Continuous EM-based user fingerprinting.</p>
+                                <button class="btn-watch"><i class="fas fa-play"></i> Watch Demo</button>
+                            </div>
+                        </div>
+
+                        <!-- Project 6: SingSpirit (Lamp) -->
+                        <div class="demo-item" onclick="openDemo('demoSelected/6-lamp.png', 'demoSelected/6-SingAttackPreliminary.mp4', 'Acoustic State Analysis', 'Case study on detecting operational states of desk lamps via sound signatures.')">
+                            <img src="demoSelected/6-lamp.png" class="demo-thumb" alt="Lamp Sound">
+                            <div class="demo-overlay">
+                                <h3>Acoustic State Analysis</h3>
+                                <p>Operational state detection of desk lamps.</p>
+                                <button class="btn-watch"><i class="fas fa-play"></i> Watch Demo</button>
+                            </div>
+                        </div>
+
+                        <!-- Project 7: Driver Fatigue -->
+                        <div class="demo-item" onclick="openDemo('demoSelected/7-handfree-VNC.png', 'demoSelected/7-handfree-VNC.mp4', 'Intelligent Driving Monitor', 'Acoustic sensing for driver fatigue detection and gesture-based vehicle control.')">
+                            <img src="demoSelected/7-handfree-VNC.png" class="demo-thumb" alt="Driver Fatigue">
+                            <div class="demo-overlay">
+                                <h3>Intelligent Driving Monitor</h3>
+                                <p>Driver fatigue and gesture-based vehicle control.</p>
+                                <button class="btn-watch"><i class="fas fa-play"></i> Watch Demo</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
+
+            <!-- VIDEO MODAL -->
+            <div class="video-modal" id="videoModal">
+                <div class="modal-close" onclick="closeDemo()"><i class="fas fa-times"></i></div>
+                <div class="modal-content">
+                    <video id="modalVideo" class="modal-video" controls autoplay>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
 
             <!-- SECTION: TEAM -->
             <section id="sec-team" class="section">
@@ -950,6 +1204,34 @@
             });
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openDemo(imgSrc, videoSrc, title, desc) {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            
+            video.src = videoSrc;
+            modal.classList.add('active');
+            
+            // Optional: Add title to the modal if you wish by adding a title element in HTML
+            console.log("Playing demo: " + title);
+        }
+
+        function closeDemo() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            
+            modal.classList.remove('active');
+            video.pause();
+            video.src = ""; // Reset video to stop loading
+        }
+
+        // Close modal when clicking outside the video content
+        window.onclick = function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target == modal) {
+                closeDemo();
+            }
         }
 
         function toggleMobileMenu() {
