@@ -1,762 +1,260 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Lanqing Yang (杨岚青) 的个人主页">
-    <title>Lanqing Yang (杨岚青) - SJTU</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Research Roadmap · Lanqing Yang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         :root {
-            --sidebar-bg: #0f172a; 
-            --sidebar-text: #cbd5e1;
-            --primary-color: #2563eb;
-            --primary-dark: #1d4ed8;
-            --bg-main: #f1f5f9;
-            --card-bg: #ffffff;
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --accent-industrial: #64748b;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
             --text-main: #1e293b;
-            --text-light: #64748b;
-            --border-color: #e2e8f0;
+            --text-muted: #64748b;
+            --radius: 16px;
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-main);
+            background: var(--bg-body);
             color: var(--text-main);
-            display: flex;
-            min-height: 100vh;
             line-height: 1.6;
+            padding: 0;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Roboto Slab', serif;
-            color: var(--text-main);
+        /* ───── HEADER ───── */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+        .hero h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
-
-        a {
-            color: var(--primary-color);
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: white;
             text-decoration: none;
-            transition: color 0.2s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        .back-btn:hover { opacity: 1; }
+
+        /* ───── GRID LAYOUT ───── */
+        .container {
+            max-width: 1200px;
+            margin: -2rem auto 4rem;
+            padding: 0 2rem;
         }
 
-        a:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
+        .manifesto {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            text-align: center;
+            border-top: 5px solid var(--primary);
+        }
+        .manifesto h2 { font-family: 'DM Serif Display', serif; margin-bottom: 1rem; }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
         }
 
-        /* 左侧固定边栏 */
-        .sidebar {
-            width: 320px;
-            background-color: var(--sidebar-bg);
-            color: var(--sidebar-text);
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            padding: 2.5rem 2rem;
+        .topic-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
-            z-index: 100;
         }
+        .topic-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.15); }
 
-        .profile-pic {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #334155;
-            margin: 0 auto 1.5rem auto;
-            display: block;
-        }
+        /* Card Sizes */
+        .span-6 { grid-column: span 6; }
+        .span-4 { grid-column: span 4; }
+        .span-3 { grid-column: span 3; }
+        .span-full { grid-column: span 12; }
 
-        .sidebar-name {
-            color: #ffffff;
-            font-size: 1.8rem;
-            text-align: center;
-            margin-bottom: 0.2rem;
-        }
-
-        .sidebar-title {
-            text-align: center;
-            font-size: 0.95rem;
-            color: #94a3b8;
-            margin-bottom: 2rem;
-            line-height: 1.4;
-        }
-
-        .nav-menu {
-            list-style: none;
-            margin-bottom: 2rem;
-            flex-grow: 1;
-        }
-
-        .nav-menu li {
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-menu button {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: var(--sidebar-text);
-            text-align: left;
-            padding: 0.75rem 1rem;
-            font-size: 1.05rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .nav-menu button:hover {
-            background: rgba(255,255,255,0.1);
-            color: #ffffff;
-        }
-
-        .nav-menu button.active {
-            background: var(--primary-color);
-            color: #ffffff;
-            font-weight: 600;
-            box-shadow: 0 4px 6px rgba(37,99,235,0.3);
-        }
-
-        .contact-info {
-            font-size: 0.85rem;
-            border-top: 1px solid #334155;
-            padding-top: 1.5rem;
-        }
-
-        .contact-info p {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 0.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 12px;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: #94a3b8;
-            font-size: 1.2rem;
-        }
-
-        .social-links a:hover { color: #ffffff; }
-
-        /* 右侧主内容区 */
-        .main-content {
-            margin-left: 320px;
-            flex-grow: 1;
-            padding: 3rem 4rem;
-            max-width: 1200px;
-        }
-
-        .page-section {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .page-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .content-card {
-            background: var(--card-bg);
-            padding: 2.5rem;
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-soft);
+            color: var(--primary);
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            border: 1px solid var(--border-color);
-            margin-bottom: 2rem;
-        }
-
-        .section-header {
-            font-size: 1.6rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-dark);
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .badge {
-            display: inline-block;
+        .topic-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .topic-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* ───── PAPER LINKS ───── */
+        .paper-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #eff6ff;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid #dbeafe;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        .paper-tag:hover { background: var(--primary); color: white; }
+
+        /* ───── INDUSTRIAL TAGS ───── */
+        .industrial-badge {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: #fff;
+            background: var(--accent-industrial);
             padding: 2px 8px;
             border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: white;
-            margin-left: 6px;
+            margin-left: 10px;
             vertical-align: middle;
         }
-        .badge-a { background: #dc2626; }
-        .badge-b { background: #2563eb; }
-        .badge-award { background: #d97706; }
-        .badge-fund { background: #059669; }
-        .badge-tech { background: #475569; margin-left: 0; margin-right: 6px; margin-top: 8px;}
 
-        /* Demo 卡片系统样式 */
-        .demo-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .demo-card {
-            display: flex;
-            flex-direction: row;
-            background: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: box-shadow 0.3s;
-        }
-
-        .demo-card:hover {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-        }
-
-        .demo-media {
-            flex: 0 0 350px;
-            background: linear-gradient(135deg, #1e293b, #334155);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.2);
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* 实际使用时，可以将下面的 img 标签取消注释，替换成你们的动图或截图 */
-        .demo-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0.8; /* 加上图片后可以调为1 */
-        }
-
-        .demo-info {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .demo-info h3 {
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-            color: var(--primary-dark);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .demo-info p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        /* 论文列表样式 */
-        .pub-list { list-style: none; counter-reset: pub-counter; }
-        .pub-item { position: relative; padding-left: 35px; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px dashed var(--border-color); }
-        .pub-item::before { counter-increment: pub-counter; content: "[" counter(pub-counter) "]"; position: absolute; left: 0; top: 0; font-weight: 600; color: var(--primary-color); font-size: 0.95rem; }
-        .pub-title { font-weight: 600; font-size: 1.05rem; color: #0f172a; margin-bottom: 0.2rem; }
-        .pub-authors { font-size: 0.9rem; color: var(--text-light); margin-bottom: 0.2rem; }
-        .pub-authors b { color: #000; }
-        .pub-venue { font-style: italic; font-size: 0.9rem; color: var(--primary-dark); }
-        .pub-links { margin-top: 0.5rem; display: flex; gap: 8px; }
-        .btn-link { font-size: 0.8rem; padding: 2px 10px; border-radius: 4px; background: var(--bg-main); color: var(--text-light); border: 1px solid #cbd5e1; transition: 0.2s; }
-        .btn-link:hover { background: var(--primary-color); color: white; border-color: var(--primary-color); text-decoration: none;}
-
-        /* 新闻模块 */
-        .news-table { width: 100%; border-collapse: collapse; }
-        .news-table td { padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; }
-        .news-date { width: 100px; font-weight: 600; color: var(--text-light); vertical-align: top; }
-
-        /* 团队成员网格 */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
-        .team-card { display: flex; align-items: center; gap: 15px; background: #fff; padding: 1.2rem; border-radius: 8px; border: 1px solid var(--border-color); transition: box-shadow 0.2s; }
-        .team-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .team-avatar { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
-        .team-info h4 { margin: 0 0 0.2rem 0; font-size: 1.1rem; font-family: 'Inter', sans-serif;}
-        .team-info .degree { font-size: 0.8rem; color: var(--primary-color); font-weight: 600;}
-        .team-info .research { font-size: 0.85rem; color: var(--text-light); line-height: 1.3; margin-top: 4px;}
-
-        /* 团队图库 */
-        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .gallery-item { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-color); transition: transform 0.3s; }
-        .gallery-item:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-
-        /* 列表样式通用 */
-        .dense-list { list-style: none; }
-        .dense-list li { position: relative; padding-left: 18px; margin-bottom: 0.6rem; font-size: 0.95rem; }
-        .dense-list li::before { content: '▪'; position: absolute; left: 0; color: var(--primary-color); font-size: 1.2rem; line-height: 1; }
-
-        /* 响应式 */
+        /* ───── RESPONSIVE ───── */
         @media (max-width: 992px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; position: relative; padding: 2rem; }
-            .main-content { margin-left: 0; padding: 2rem; }
-            .nav-menu { display: flex; flex-wrap: wrap; gap: 10px; }
-            .nav-menu li { margin-bottom: 0; flex: 1 1 calc(50% - 10px); }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-            .demo-card { flex-direction: column; }
-            .demo-media { flex: 0 0 250px; }
-        }
-        @media (max-width: 600px) {
-            .nav-menu li { flex: 1 1 100%; }
-            .gallery-grid { grid-template-columns: 1fr; }
+            .span-6, .span-4, .span-3 { grid-column: span 12; }
+            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <aside class="sidebar">
-        <img src="img/lanqing-1.jpg" alt="Lanqing Yang" class="profile-pic">
-        <h1 class="sidebar-name">Lanqing Yang</h1>
-        <div class="sidebar-title">
-            Associate Researcher<br>
-            Mobile Intelligent Networks and Systems (Minds) Lab<br>
-            Shanghai Jiao Tong University
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+    <header class="hero">
+        <h1>Research Roadmap</h1>
+        <p>Bridging the gap between theoretical academic research and real-world industrial deployment. We don't just publish; we build systems that work in the wild.</p>
+    </header>
+
+    <div class="container">
+        <div class="manifesto">
+            <h2>Our Philosophy: "Real-World First"</h2>
+            <p>Many sensing systems work perfectly in a lab but fail in the real world. My research focuses on <strong>Edge Case Robustness</strong>—making sensing work in extreme noise, ultra-weak signals, and industrial constraints. Whether it's underwater, underground, or inside a power grid, the goal is <strong>Practical Impact</strong>.</p>
         </div>
 
-        <ul class="nav-menu">
-            <li><button onclick="switchPage('home')" id="btn-home" class="active"><i class="fas fa-home"></i> Home & News</button></li>
-            <li><button onclick="switchPage('publications')" id="btn-publications"><i class="fas fa-book"></i> Publications</button></li>
-            <li><button onclick="switchPage('projects')" id="btn-projects"><i class="fas fa-trophy"></i> Grants & Awards</button></li>
-            <li><button onclick="switchPage('demos')" id="btn-demos"><i class="fas fa-laptop-code"></i> Demos & Systems</button></li>
-            <li><button onclick="switchPage('team')" id="btn-team"><i class="fas fa-users"></i> Team & Gallery</button></li>
-            <li><button onclick="switchPage('services')" id="btn-services"><i class="fas fa-concierge-bell"></i> Services & Info</button></li>
-        </ul>
-
-        <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> yanglanqing@sjtu.edu.cn</p>
-            <p><i class="fas fa-map-marker-alt"></i> Room 3-126, SEIEE, SJTU</p>
-            <div class="social-links">
-                <a href="https://orcid.org/0000-0002-1551-224X" target="_blank" title="ORCID"><i class="fab fa-orcid"></i></a>
-                <a href="https://www.researchgate.net/profile/Lanqing_Yang3" target="_blank" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+        <div class="roadmap-grid">
+            
+            <!-- PILLAR 1: EM Sensing & Fingerprinting -->
+            <div class="topic-card span-6">
+                <div class="icon-box" style="background: #dbeafe;"><i class="fas fa-magnet"></i></div>
+                <h3>Pervasive EM Sensing <span class="industrial-badge">Deployed</span></h3>
+                <p>Developing non-invasive methods to identify users and devices through electromagnetic emanations. From continuous authentication on smartphones to auditing hardware privacy leaks.</p>
+                <div class="paper-links">
+                    <a href="#" class="paper-tag"><i class="fas fa-file-pdf"></i> MagPrint 2020</a>
+                    <a href="#" class="paper-tag"><i class="fas fa-file-pdf"></i> MagPrint++ 2026</a>
+                    <a href="#" class="paper-tag"><i class="fas fa-file-pdf"></i> MagSpy</a>
+                </div>
             </div>
-            <p style="margin-top: 15px; font-size: 0.8rem; color: #93c5fd; font-weight: 500;">
-                <i class="fas fa-lightbulb"></i> Looking for curious students who love using AI & hands-on experiments to solve problems!
-            </p>
+
+            <!-- PILLAR 2: Extreme Environment Perception -->
+            <div class="topic-card span-6">
+                <div class="icon-box" style="background: #fef3c7;"><i class="fas fa-mountain-sun"></i></div>
+                <h3>Extreme Environment Perception <span class="industrial-badge">Hard-Tech</span></h3>
+                <p>Sensing where others fail. This includes <strong>few-shot image recognition</strong> for power grid anomalies, <strong>GPR (Ground Penetrating Radar)</strong> for underground sensing, and <strong>ultra-weak signal detection</strong> for underwater targets.</p>
+                <div class="paper-links">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Current Focus: Low Signal-to-Noise Ratio (SNR) Optimization</span>
+                </div>
+            </div>
+
+            <!-- PILLAR 3: Industrial Security -->
+            <div class="topic-card span-4">
+                <div class="icon-box" style="background: #fee2e2;"><i class="fas fa-shield-virus"></i></div>
+                <h3>Industrial Security <span class="industrial-badge">Huawei</span></h3>
+                <p>Developing production-grade anti-surveillance systems to detect covert eavesdropping and hidden cameras with high precision (99%+ accuracy).</p>
+                <div class="paper-links">
+                    <a href="#" class="paper-tag"><i class="fas fa-lock"></i> System Deployed</a>
+                </div>
+            </div>
+
+            <!-- PILLAR 4: Acoustic Sensing -->
+            <div class="topic-card span-4">
+                <div class="icon-box" style="background: #dcfce7;"><i class="fas fa-volume-high"></i></div>
+                <h3>Intelligent Acoustic Sensing</h3>
+                <p>Using the "hidden" sounds of power supplies and electronic components to monitor device health and detect covert attacks.</p>
+                <div class="paper-links">
+                    <a href="#" class="paper-tag"><i class="fas fa-file-pdf"></i> SingAttack</a>
+                    <a href="#" class="paper-tag"><i class="fas fa-file-pdf"></i> SingSpirit</a>
+                </div>
+            </div>
+
+            <!-- PILLAR 5: AI for Physical World -->
+            <div class="topic-card span-4">
+                <div class="icon-box" style="background: #f3e8ff;"><i class="fas fa-brain"></i></div>
+                <h3>LLMs for Physical World</h3>
+                <p>Integrating Large Language Models to handle complex sensing data, optimizing routing for intelligence, and automating NL2SQL for industrial databases.</p>
+                <div class="paper-links">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Focus: Multi-Agent Optimization</span>
+                </div>
+            </div>
+
+            <!-- PILLAR 6: Image Processing -->
+            <div class="topic-card span-full">
+                <div class="icon-box" style="background: #e0f2fe;"><i class="fas fa-image"></i></div>
+                <h3>Advanced Image Processing & Compression</h3>
+                <p>Developing high-efficiency algorithms for satellite exploration, DMD micro-mirrors, and cloud-edge collaborative image compression to ensure real-time transmission in bandwidth-limited industrial scenarios.</p>
+                <div class="paper-links">
+                    <a href="#" class="paper-tag"><i class="fas fa-satellite"></i> Satellite Imagery</a>
+                    <a href="#" class="paper-tag"><i class="fas fa-compress"></i> Edge Compression</a>
+                </div>
+            </div>
+
         </div>
-    </aside>
+    </div>
 
-    <main class="main-content">
-        
-        <section id="page-home" class="page-section active">
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-user-circle"></i> Biography</h2>
-                <p style="font-size: 1.05rem; margin-bottom: 1rem;">
-                    I am an Associate Researcher supervised by <a href="https://www.cs.sjtu.edu.cn/~xue-gt/">Professor Guangtao Xue</a> at SJTU. I am also the co-founder of the Cross-Research Center for Digital Twin Simulation and Intelligent Connected Sensing (数智仿真与智联感知交叉研究中心). My research primarily focuses on the <strong>Internet of Things (IoT), Intelligent Sensing, and Large Language Models</strong>. 
-                </p>
-                <p style="font-size: 1.05rem;">
-                    I have published over 20 papers in top-tier conferences and journals including USENIX SECURITY, NSDI, MOBICOM, and TMC. I am also the recipient of the 2025 Shanghai Computer Society Science and Technology Award (First Prize).
-                </p>
-            </div>
-
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-bullhorn"></i> Recent News</h2>
-                <table class="news-table">
-                    <tr>
-                        <td class="news-date">2026/01</td>
-                        <td>New journal accepted! "赋能空天海洋遥感：基于声学信道状态信息与人工智能算法的众包盐度感知技术" will appear in 2026. <span class="badge badge-b">Journal</span></td>
-                    </tr>
-                    <tr>
-                        <td class="news-date">2025/10</td>
-                        <td>Paper <i>LLM4IC4K</i> entered Round 2 of <strong>AAAI 2026</strong>. Congratulations to Yixin and Chenzhe! <span class="badge badge-a">CCF-A</span></td>
-                    </tr>
-                    <tr>
-                        <td class="news-date">2025/10</td>
-                        <td>Paper <i>NlcTCN</i> is accepted by <strong>IEEE BIBM</strong>. Congratulations to Zechen and Yiheng! <span class="badge badge-b">CCF-B</span></td>
-                    </tr>
-                    <tr>
-                        <td class="news-date">2025/09</td>
-                        <td>Paper <i>MagPrint++</i> is accepted by <strong>IEEE TMC</strong>. <span class="badge badge-a">CCF-A</span></td>
-                    </tr>
-                    <tr>
-                        <td class="news-date">2025/09</td>
-                        <td>Paper <i>SingSpirit</i> is accepted by <strong>SenSys 2026</strong>. <span class="badge badge-b">CCF-B</span></td>
-                    </tr>
-                    <tr>
-                        <td class="news-date">2025/09</td>
-                        <td>Deployed the industry's first <strong>Anti-Surveillance Detection System</strong> in collaboration with Huawei Data Communications (99% accuracy). <span class="badge" style="background:#475569">Industry</span></td>
-                    </tr>
-                    <tr>
-                        <td class="news-date">2025/08</td>
-                        <td>Secured <strong>NSFC Youth Project (C class)</strong> funding! <span class="badge badge-fund">Grant</span></td>
-                    </tr>
-                    <tr>
-                        <td class="news-date">2024/12</td>
-                        <td>Paper <i>MagSpy</i> is accepted by <strong>IEEE TMC</strong>. Congratulations to Yongjian! <span class="badge badge-a">CCF-A</span></td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-
-        <section id="page-demos" class="page-section">
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-cogs"></i> Prototypes & System Demonstrations</h2>
-                <p style="font-size: 1.05rem; margin-bottom: 2rem; color: var(--text-light);">
-                    Our research goes beyond theoretical papers. We build real-world systems, sensors, and intelligent algorithms. Below are selected demonstrations of systems currently deployed or developed by our team.
-                </p>
-
-                <div class="demo-grid">
-                    
-                    <div class="demo-card">
-                        <div class="demo-media">
-                            <i class="fas fa-server"></i>
-                            </div>
-                        <div class="demo-info">
-                            <h3>大设备管理与“感智协同”系统<br><span style="font-size:1rem;font-weight:500;color:var(--text-light)">Large Equipment Management & Synergy System</span></h3>
-                            <p>An integrated, real-time system utilizing multi-source sensors and AI for managing and monitoring massive equipment infrastructure (e.g., smart power grids). A core technical innovation lies in our acoustic sensing capability: using sound to continuously measure the rotational speed of dynamic equipment like centrifuges. The system is engineered to capture complex 100Hz harmonics, allowing it to track extreme rotational speeds up to 50,000 RPM in real-time. This system has been presented to the Guizhou Big Data Bureau for industrial deployment.</p>
-                            <div>
-                                <span class="badge badge-tech">Acoustic Sensing</span>
-                                <span class="badge badge-tech">Smart Grid</span>
-                                <span class="badge badge-tech">Multi-source AI</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="demo-card">
-                        <div class="demo-media">
-                            <i class="fas fa-bolt"></i>
-                            </div>
-                        <div class="demo-info">
-                            <h3>SingSpirit: 电器交互感知系统<br><span style="font-size:1rem;font-weight:500;color:var(--text-light)">Appliance Interaction via Power Supply Acoustics</span></h3>
-                            <p>SingSpirit introduces a novel side-channel interaction and monitoring paradigm. Built upon our prior works (SingMonitor, SingAttack), this system captures the faint, high-frequency acoustic signals emitted inherently by power supplies and electronic components. Through deep learning pipelines, we transform these subtle noises into rich interaction contexts—capable of monitoring e-bike battery health, detecting anomalies, or interpreting device states entirely without invasive sensors.</p>
-                            <div>
-                                <span class="badge badge-tech">Side-Channel Sensing</span>
-                                <span class="badge badge-tech">Deep Learning</span>
-                                <span class="badge badge-b">SenSys 2026</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="demo-card">
-                        <div class="demo-media">
-                            <i class="fas fa-magnet"></i>
-                            </div>
-                        <div class="demo-info">
-                            <h3>MagPrint / MagSpy: 电磁辐射感知系统<br><span style="font-size:1rem;font-weight:500;color:var(--text-light)">Human-Device Sensing via Electromagnetic Signals</span></h3>
-                            <p>A continuous tracking and fingerprinting framework exploiting unintended electromagnetic emanations. Using standard built-in magnetometers on commodity mobile devices, the system captures intricate electromagnetic signatures generated by CPU/GPU workloads and screen states. It enables high-accuracy user behavior fingerprinting and privacy auditing without requiring any specialized external hardware. Evolved from INFOCOM to IEEE TMC.</p>
-                            <div>
-                                <span class="badge badge-tech">Electromagnetic Radiation</span>
-                                <span class="badge badge-tech">Privacy & Security</span>
-                                <span class="badge badge-a">IEEE TMC</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="page-publications" class="page-section">
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-book-open"></i> Full Publications</h2>
-                <ul class="pub-list">
-                    <li class="pub-item">
-                        <div class="pub-title">赋能空天海洋遥感：基于声学信道状态信息与人工智能算法的众包盐度感知技术</div>
-                        <div class="pub-authors">董润扬, 刘海峰, 薛广涛, 陈潜, <b>杨岚青</b>, 马融.</div>
-                        <div class="pub-venue">Journal Article, 2026, 43(1): 42-53,62.</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">基于窄带物联网的分布式控制技术研究</div>
-                        <div class="pub-authors">陈以恒, 张龙, 赵青松, <b>杨岚青</b>, 薛广涛.</div>
-                        <div class="pub-venue">空天防御, 2025, 8(2): 142-152.</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">AMSER: Accelerate Mobile Speech Emotion Recognition with Signal Compression</div>
-                        <div class="pub-authors">Lu Yu, Wang Ran, Ding Dian, <b>Yang Lanqing</b>, Zhang Han, Zhang Liyun, Chen Yi-Chao, Xue Guangtao.</div>
-                        <div class="pub-venue">ICASSP 2025 <span class="badge badge-b">CCF-B</span></div>
-                        <div class="pub-links"><a href="papers/ICASSP25-amser/AMSER.pdf" target="_blank" class="btn-link"><i class="fas fa-file-pdf"></i> Paper</a></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">Wideband RF Radiance Field Modeling Using Frequency-embedded 3D Gaussian Splatting</div>
-                        <div class="pub-authors">Li Zechen, <b>Yang Lanqing</b>, Bian Yiheng, Pan Hao, Fu Yongjian, Wang Yezhou, Chen Yi-Chao, Xue Guangtao, Ren Ju.</div>
-                        <div class="pub-venue">arXiv preprint arXiv:2505.20714, 2025</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">Amser+: Accelerating Mobile Speech Emotion Recognition in IoT Environments With Mel Feature Compression</div>
-                        <div class="pub-authors">Lu Yu, Wang Ran, Ding Dian, <b>Yang Lanqing</b>, Li Yijie, Zhang Yongzhao, Chen Yi-Chao, Xue Guangtao.</div>
-                        <div class="pub-venue">IEEE Internet of Things Journal, 2025</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">CarbonNet: Enterprise-Level Carbon Emission Prediction with Large-Scale Datasets</div>
-                        <div class="pub-authors">Tang Jinghua, Fang Nan, <b>Yang Lanqing</b>, Pei Yuqiao, Wang Ran, Ding Dian, Lu Yu, Xue Guangtao.</div>
-                        <div class="pub-venue">ICIC 2024</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">VCEMO: Multi-Modal Emotion Recognition for Chinese Voiceprints</div>
-                        <div class="pub-authors">Tang Jinghua, Zhang Liyun, Lu Yu, Ding Dian, <b>Yang Lanqing</b>, Chen YiChao, Bian Minjie, Li Xiaoshan, Xue Guangtao.</div>
-                        <div class="pub-venue">arXiv preprint arXiv:2408.13019, 2024</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">Magspy: Revealing user privacy leakage via magnetometer on mobile devices</div>
-                        <div class="pub-authors">Fu Yongjian, <b>Yang Lanqing</b>, Pan Hao, Chen Yi-Chao, Xue Guangtao, Ren Ju.</div>
-                        <div class="pub-venue">IEEE Transactions on Mobile Computing (TMC), 2024 <span class="badge badge-a">CCF-A</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">SingMonitor: E-bike Charging Health Monitoring Using Sound from Power Supplies</div>
-                        <div class="pub-authors">Xiangyong Jian, <b>Lanqing Yang</b>, Yijie Li, Yi-Chao Chen, Guangtao Xue.</div>
-                        <div class="pub-venue">MDPI Applied Science, 2023</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">Acoustic Sensing and Communication Using Metasurface</div>
-                        <div class="pub-authors">Yongzhao Zhang, Yezhou Wang, <b>Lanqing Yang</b>, Mei Wang, Yi-Chao Chen, Lili Qiu, Yihong Liu, Guangtao Xue, Xiaoyu Ji.</div>
-                        <div class="pub-venue">NSDI 2023 <span class="badge badge-a">CCF-A</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">SingAttack: Remote Attacks on Speech Recognition Systems Using Sound from Power Supply</div>
-                        <div class="pub-authors"><b>Lanqing Yang</b>, Yi-Chao Chen, Xinqi Chen, Xiangyong Jian, Leping Yang, Yijie Li, Qianfei Ren, Guangtao Xue, Xiaoyu Ji.</div>
-                        <div class="pub-venue">USENIX Security 2023 <span class="badge badge-a">CCF-A</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">MAGDEFENDER: Detecting Eavesdropping on Mobile Devices using the Built-in Magnetometer</div>
-                        <div class="pub-authors">Hao Pan, Feitong Tan, Wenhao Li, Yi-Chao Chen, <b>Lanqing Yang</b>, Guangtao Xue, Xiaoyu Ji.</div>
-                        <div class="pub-venue">SECON 2023 <span class="badge badge-b">CCF-B</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">Handwriting Recognition System Leveraging Vibration Signal on Smartphones</div>
-                        <div class="pub-authors">Dian Ding, <b>Lanqing Yang</b>, Yichao-Chen, Guangtao Xue.</div>
-                        <div class="pub-venue">IEEE TMC, 2022 <span class="badge badge-a">CCF-A</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">ScreenID: Enhancing QRCode Security by Utilizing Screen Dimming Feature</div>
-                        <div class="pub-authors">Guangtao Xue, Yijie Li, Hao Pan, <b>Lanqing Yang</b>, Yi-Chao Chen, Xiaoyu Ji, Jiadi Yu.</div>
-                        <div class="pub-venue">IEEE/ACM ToN, 2022 <span class="badge badge-a">CCF-A</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">LeakPrint: Leakage or Identification: Behavior-irrelevant User Identification Leveraging Leakage Current on Laptops</div>
-                        <div class="pub-authors">Dian Ding, <b>Lanqing Yang</b>, Yi-Chao Chen, Guangtao Xue.</div>
-                        <div class="pub-venue">WUT 2022</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">MagThief: Stealing Private App Usage Data on Mobile Devices via Built-in Magnetometer</div>
-                        <div class="pub-authors">Hao Pan, <b>Lanqing Yang</b>, Yichao-Chen, Honglu Li, Guangtao Xue.</div>
-                        <div class="pub-venue">SECON 2021 <span class="badge badge-b">CCF-B</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">VibWriter: Handwriting Recognition System based on Vibration Signal</div>
-                        <div class="pub-authors">Dian Ding, <b>Lanqing Yang</b>, Yichao-Chen, Guangtao Xue.</div>
-                        <div class="pub-venue">SECON 2021 <span class="badge badge-b">CCF-B</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">ScreenID: Enhancing QRCode Security by Fingerprinting Screens</div>
-                        <div class="pub-authors">Yijie Li, Xiaoyu Ji, Yi-Chao Chen, Hao Pan, <b>Lanqing Yang</b>, Guangtao Xue, Jiadi Yu.</div>
-                        <div class="pub-venue">InfoCom 2021 <span class="badge badge-a">CCF-A</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">Poster: Toward a Secure QR Code System by Fingerprinting Screens</div>
-                        <div class="pub-authors">Yijie Li, Yi-Chao Chen, Xiaoyu Ji, Hao Pan, <b>Lanqing Yang</b>, Guangtao Xue, Jiadi Yu.</div>
-                        <div class="pub-venue">MobiCom 2020 Posters</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">Poster: Appliance Fingerprinting Using Sound from Power Supply</div>
-                        <div class="pub-authors"><b>Lanqing Yang#</b>, Honglu Li#, Zhaoxi Chen#, Yi-Chao Chen, Xiaoyu Ji, Guangtao Xue, Chuang-Wen You.</div>
-                        <div class="pub-venue">ACM UbiComp/ISWC 2020 Poster</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">MagPrint: Deep Learning Based User Fingerprinting Using Electromagnetic Signals</div>
-                        <div class="pub-authors"><b>Lanqing Yang#</b>, Yi-Chao Chen#, Hao Pan, Dian Ding, Guangtao Xue, Linghe Kong, Jiadi Yu, Minglu Li.</div>
-                        <div class="pub-venue">IEEE Infocom 2020 <span class="badge badge-a">CCF-A</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">mQRCode: Secure QR Code Using Nonlinearity of Spatial Frequency in Light</div>
-                        <div class="pub-authors">Hao Pan#, Yi-Chao Chen#, <b>Lanqing Yang</b>, Guangtao Xue, Chuang-Wen You, Xiaoyu Ji.</div>
-                        <div class="pub-venue">ACM MobiCom 2019 <span class="badge badge-a">CCF-A</span></div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">Poster: Secure Visible Light Communication based on Nonlinearity of Spatial Frequency in Light</div>
-                        <div class="pub-authors">Hao Pan, <b>Lanqing Yang</b>, Yi-Chao Chen, Guangtao Xue, Chuang-Wen You, Xiaoyu Ji, Pai-Yen Chen.</div>
-                        <div class="pub-venue">ACM MobiCom 2019 Demo/Poster</div>
-                    </li>
-                    <li class="pub-item">
-                        <div class="pub-title">Hand-free Gesture Recognition for Vehicle Infotainment System Control</div>
-                        <div class="pub-authors">Qi Ye, <b>Lanqing Yang</b>, Guangtao Xue.</div>
-                        <div class="pub-venue">IEEE VNC 2018</div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="page-projects" class="page-section">
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-trophy"></i> Awards & Honors</h2>
-                <ul class="dense-list">
-                    <li><span class="badge badge-award">First Prize</span> <b>《生物制药装备数智融合关键技术开发与产业化应用》</b> - 2025年度上海市计算机学会科学技术奖一等奖（科技进步奖）, 序8</li>
-                    <li>Certificate of Participate in Outstanding Youth Paper Award (2020/7)</li>
-                    <li>Shanghai Outstanding Graduate</li>
-                    <li>Second Prize of National College Green Computing Competition (2018/11)</li>
-                    <li>Third Prize of IEEE VNC 2018 App Contest (2018/11)</li>
-                </ul>
-            </div>
-
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-hand-holding-usd"></i> Funding Projects</h2>
-                <ul class="dense-list">
-                    <li><b>主持:</b> 国家自然科学基金委员会，青年科学基金项目（C类），感知受限场景下面向移动物联终端的电磁感知关键技术研究，2026-01至2028-12，30万元，在研</li>
-                    <li><b>主持:</b> 上海市2024年度“科技创新行动计划”自然科学基金面上项目，移动端电磁感知关键技术研究，2024-10至2027-09，20万元，在研</li>
-                    <li><b>项目骨干/第三负责人:</b> 国家重点研发计划，基于多源异构临床数据建立宫颈癌精准诊疗新策略的研究，2026.1-2027.12，300万，在研</li>
-                    <li><b>参与:</b> 国家自然科学基金面上项目，基于多模态特征嵌入与融合的病损图像分析...，2026-2029，49万元</li>
-                    <li><b>参与:</b> 国家自然科学基金面上项目，基于电磁辐射旁路信号的移动计算与智能感知技术研究，2021-2024，57万元</li>
-                    <li><b>参与:</b> 国家自然科学基金重点项目，边缘智能架构中资源优化分配关键技术研究，2020-2024，298万元</li>
-                </ul>
-            </div>
-
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-certificate"></i> Patents</h2>
-                <ul class="dense-list">
-                    <li><b>一种基于敲击声音仿真和深度学习的物体材质识别方法</b> (CN202510160438.4) - 薛广涛, 熊权武, <b>杨岚青</b>等. [实质审查]</li>
-                    <li><b>一种基于关联感知的多区域数据迁移方法以及存储系统</b> (CN202411319922.9) - 薛广涛, 孙鹍鹏, <b>杨岚青</b>. [受理]</li>
-                    <li><b>一种企业级碳排放预测方法及其系统</b> (CN202410576384.5) - 薛广涛, 王然, <b>杨岚青</b>等. [实质审查]</li>
-                    <li><b>一种针对气隙系统的安全性优化方法</b> (CN202310008703.8) - 薛广涛, 金星宇, 陈奕超, <b>杨岚青</b>. [已授权]</li>
-                    <li><b>一种基于超声信号的服务器故障诊断技术及系统</b> (CN202111661426.8) - 薛广涛, 陈昭熹, <b>杨岚青</b>. [实质审查]</li>
-                    <li><b>一种基于磁感应信号的移动设备监控方法及系统</b> (CN201910193710.3) - 薛广涛, 潘昊, <b>杨岚青</b>. [已授权]</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="page-team" class="page-section">
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-users"></i> Research Team</h2>
-                <div class="team-grid">
-                    <div class="team-card">
-                        <img src="img/liuyixin.png" alt="刘怡昕" class="team-avatar">
-                        <div class="team-info">
-                            <h4>刘怡昕 <span class="degree">研一</span></h4>
-                            <div class="research">大模型微调与多智能体优化<br>发表顶会论文1篇</div>
-                        </div>
-                    </div>
-                    <div class="team-card">
-                        <img src="img/yuanhebin.jpg" alt="袁何斌" class="team-avatar">
-                        <div class="team-info">
-                            <h4>袁何斌 <span class="degree">研三</span></h4>
-                            <div class="research">多模态大模型和连续学习<br>CV前沿探索</div>
-                        </div>
-                    </div>
-                    <div class="team-card">
-                        <img src="img/ganlinqian.jpg" alt="甘林千" class="team-avatar">
-                        <div class="team-info">
-                            <h4>甘林千 <span class="degree">研一</span></h4>
-                            <div class="research">大模型安全防护与电磁感知<br>投稿CCF A类论文1篇</div>
-                        </div>
-                    </div>
-                    <div class="team-card">
-                        <img src="img/dongrunyang.jpg" alt="董润扬" class="team-avatar">
-                        <div class="team-info">
-                            <h4>董润扬 <span class="degree">研一</span></h4>
-                            <div class="research">无线通信与大模型前沿探索</div>
-                        </div>
-                    </div>
-                    <div class="team-card">
-                        <img src="img/linzhonghao.jpg" alt="林仲豪" class="team-avatar">
-                        <div class="team-info">
-                            <h4>林仲豪 <span class="degree">研一</span></h4>
-                            <div class="research">声学仿真、无源超表面感知</div>
-                        </div>
-                    </div>
-                    <div class="team-card">
-                        <img src="img/chenyan.png" alt="陈燕" class="team-avatar">
-                        <div class="team-info">
-                            <h4>陈燕 <span class="degree">大四(推免)</span></h4>
-                            <div class="research">大模型动态路由、传感器融合<br>投稿CCF A类论文1篇</div>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 class="section-header" style="margin-top: 2rem;"><i class="fas fa-camera-retro"></i> Team Gallery</h2>
-                <div class="gallery-grid">
-                    <img src="img/team/team-260101.jpg" alt="Team Building" class="gallery-item">
-                    <img src="img/team/微信图片_2026-01-21_161622_154.jpg" alt="Network Computing Center 1" class="gallery-item">
-                    <img src="img/team/微信图片_2026-01-21_161628_455.jpg" alt="Network Computing Center 2" class="gallery-item">
-                    <img src="img/team/graduated-hebin.jpg" alt="Graduation" class="gallery-item">
-                    <img src="img/team/Taihu-2026.jpg" alt="Taihu Lake 2026" class="gallery-item">
-                    <img src="img/team/TaiHu.jpg" alt="Taihu Lake Trip" class="gallery-item">
-                </div>
-            </div>
-        </section>
-
-        <section id="page-services" class="page-section">
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-university"></i> Education</h2>
-                <ul class="dense-list">
-                    <li><b>Ph.D.</b>, Shanghai Jiao Tong University (2017-2023)</li>
-                    <li><b>Undergraduate</b>, University of Electronic Science and Technology of China (2013-2017)</li>
-                </ul>
-            </div>
-
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-chalkboard-teacher"></i> Teaching Courses</h2>
-                <ul class="dense-list">
-                    <li>“Mobile Computing and Intelligent Sensing” - Graduate Course</li>
-                    <li>“Computer Networks (Class D)” - Undergraduate Course</li>
-                </ul>
-            </div>
-
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-hands-helping"></i> Academic Service</h2>
-                <ul class="dense-list">
-                    <li>Member of the Internet of Things Special Committee, China Computer Federation (CCF)</li>
-                    <li>Expert Reviewer for Master's Degree Theses, Ministry of Education</li>
-                    <li>Chair of UbiComp/ISWC 2025 and IEEE/CIC ICCC</li>
-                    <li>Conference Reviewer: ACM Mobicom, MobiSys, IEEE TPAMI, TNNLS</li>
-                </ul>
-            </div>
-
-            <div class="content-card">
-                <h2 class="section-header"><i class="fas fa-file-contract"></i> National Standard</h2>
-                <ul class="dense-list">
-                    <li>参与起草国家标准《 物联网 470MHz/2.4GHz频段传感网通信与信息交换 第1部分：物理层要求及链路层协议》</li>
-                </ul>
-            </div>
-        </section>
-        
-    </main>
-
-    <script>
-        function switchPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.querySelectorAll('.nav-menu button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            document.getElementById('page-' + pageId).classList.add('active');
-            document.getElementById('btn-' + pageId).classList.add('active');
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
 </body>
 </html>
